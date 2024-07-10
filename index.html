@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting</title>
+    <link rel="stylesheet" href="sorting.css">
+</head>
+<body>
+    <h1>Sorting Visualizer</h1>
+    <div id="container" class="container"></div>
+
+    <div><button onclick="init()">Randomize</button></div>
+    <div>
+        <hr>
+        <button onclick="playBubble()">Bubble Sort</button>
+        <button onclick="playInsert()">Insertion Sort</button> 
+        <!-- <button onclick="playSelect()">Selection Sort</button> -->
+    </div> 
+    <div>
+        <hr>
+        <!--  <button onclick="playQuick()">Quick Sort</button> -->
+        <!--  <button onclick="playHeap()">Heap Sort</button> -->
+        <!-- <button onclick="playMerge()">Merge Sort</button> -->
+    </div>
+
+    <div class="range">
+        <div class="sliderValue">
+            <span></span>
+        </div>
+        <div class="field">
+            <div class="number">Size</div>
+            <div class="value left">0</div>
+            <input type="range" id="size" min="0" max="50" value="10" step="1" onchange="inputSize(value)">
+            <div class="value right">50</div>
+        </div>
+        <div class="field">
+            <div class="number">Speed</div>
+            <div class="value left">fast</div>
+            <input type="range" id="size" min="0" max="500" value="36" step="10" onchange="inputSpeed(value)">
+            <div class="value right">slow</div>
+        </div>
+
+    </div>
+
+    <script src="sorting.js"></script>
+</body>
+</html>
