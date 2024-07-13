@@ -161,8 +161,9 @@ function animate(moves, speed){
     if(move.type=="move"){
        // [array[i], array[j]] = [array[j], array[i]];  
        // insertSort(copy);
-        for(let p=j; p > i; p--)
-        moves.unshift({indices:[p,p-1], type:"swap"});
+        for(let p=j; p > i; p--){
+            moves.unshift({indices:[p,p-1], type:"swap"});
+        }
     }
 
     if(move.type=="leftblock" || move.type=="rightblock" || move.type=="over"){
