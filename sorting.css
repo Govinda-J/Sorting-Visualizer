@@ -1,5 +1,6 @@
 #container{
-height:200px;  padding:40px;  display:flex; }
+height:200px;  padding:40px;  display:flex;
+align-items: flex-end;}
 
 h1{
 padding-top:7%;
