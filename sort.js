@@ -129,6 +129,7 @@ function merge(array, p, q, r){
         if(L[i]<=R[j]){
            // [a,b]=[b,a];
             moves.push({indices:[k,p+i], type:"move"});
+            
             array[k] = L[i];  //j=i;
             i++;  a=j;
            // moves.push({indices:[k,p+i], type:"move"});
@@ -159,8 +160,9 @@ function animate(moves, speed){
     }
     if(move.type=="move"){
        // [array[i], array[j]] = [array[j], array[i]];  
-        let copy = [i,j];
-        insertSort(copy);
+       // insertSort(copy);
+        for(let p=j; p > i; p--)
+        moves.unshift({indices:[p,p-1], type:"swap"});
     }
 
     if(move.type=="leftblock" || move.type=="rightblock" || move.type=="over"){
