@@ -95,7 +95,7 @@ function playMerge(){
 function mergeSort(array, p, r){
     if(p<r)
     {
-        let q = Math.floor((p+r)/2);
+        let q = Math.floor((p+r)/2);        
 
         //console.log("merge: p= ",p," q= ",q," r= ",r);
 
@@ -112,7 +112,7 @@ function mergeSort(array, p, r){
 
 function merge(array, p, q, r){
     let n1 = q-p+1;
-    let n2 = r-q;
+    let n2 = r-q;                let x=0;
 
     let L = []; let R = [];
     for(let i=0; i<n1; i++)
@@ -128,15 +128,16 @@ function merge(array, p, q, r){
         let a = i;  let b = j;
         if(L[i]<=R[j]){
            // [a,b]=[b,a];
-            moves.push({indices:[k,p+i], type:"move"});
-            
+            moves.push({indices:[k,p+i+x], type:"move"});
+            x+=1;
             array[k] = L[i];  //j=i;
             i++;  a=j;
            // moves.push({indices:[k,p+i], type:"move"});
         }
         else{
             //[a,b]=[b,a];
-            moves.push({indices:[k,q+j+1], type:"move"});
+            moves.push({indices:[k,q+j+1+x], type:"move"});
+            x+=1;
             array[k] = R[j];  //i = j;
             j++;  b=i;
            // moves.push({indices:[k,p+i], type:"move"});
