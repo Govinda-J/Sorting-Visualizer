@@ -1,0 +1,30 @@
+#container{
+height:200px;  padding:40px;  display:flex; }
+
+h1{
+padding-top:7%;
+}
+body{
+display:flex;  align-items:center; flex-direction: column;
+}
+
+.bar{
+  width:25px;
+background-color: black;
+margin: 3px;
+
+
+}
+.range{
+margin:30px;  padding: 0 10px;  }
+.field{
+display: flex;  align-item:center;
+padding:0 10px;
+}
+
+.field .number{
+position: relative;
+margin-right: 40px;
+font-size:16px;
+bottom:8px;
+}
