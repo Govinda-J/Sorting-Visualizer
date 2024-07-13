@@ -128,14 +128,14 @@ function merge(array, p, q, r){
         let a = i;  let b = j;
         if(L[i]<=R[j]){
            // [a,b]=[b,a];
-            moves.push({indices:[k,p+i], type:"swap"});
+            moves.push({indices:[k,p+i], type:"move"});
             array[k] = L[i];  //j=i;
             i++;  a=j;
            // moves.push({indices:[k,p+i], type:"move"});
         }
         else{
             //[a,b]=[b,a];
-            moves.push({indices:[k,q+j+1], type:"swap"});
+            moves.push({indices:[k,q+j+1], type:"move"});
             array[k] = R[j];  //i = j;
             j++;  b=i;
            // moves.push({indices:[k,p+i], type:"move"});
@@ -158,9 +158,9 @@ function animate(moves, speed){
         [array[i], array[j]] = [array[j], array[i]];  
     }
     if(move.type=="move"){
-
-        [array[i], array[j]] = [array[j], array[i]];  
-        
+       // [array[i], array[j]] = [array[j], array[i]];  
+        let copy = [i,j];
+        insertSort(copy);
     }
 
     if(move.type=="leftblock" || move.type=="rightblock" || move.type=="over"){
