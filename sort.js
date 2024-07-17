@@ -1,4 +1,4 @@
-var n=15;   var speed=3000;
+var n=15;   var speed=300;
 array=[];
 
 
