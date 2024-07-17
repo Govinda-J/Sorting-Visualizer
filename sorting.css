@@ -11,6 +11,9 @@ h1{
     /*color: white;*/
     font-size: 3em;
 }
+pre{
+    color: white;
+}
 body{
     display: flex;
     align-items: center;
