@@ -52,3 +52,15 @@ button{
     font-weight: bold;
     color:midnightblue;
 }
+
+@media screen and (max-width: 400px)
+{
+    h1{
+        font-size: 2em;
+    }
+    .container{
+        margin: 20px;
+        padding: 10px;
+        transform: scale(0.55);
+    }
+}
