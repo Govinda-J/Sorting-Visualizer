@@ -82,6 +82,109 @@ function insertionSort(array){
 
 }
 
+
+function insertSortforMerge(newarr,p){
+    const moves=[];
+    
+    let i, key, j;
+    for(i=1; i<newarr.length; i++){
+        key = newarr[i];
+        j = i-1;
+
+        while(j >= 0 && newarr[j]>key){
+            moves.push({indices:[i+p,j+p], type:"compM"});
+            moves.push({indices:[j+p,j+1+p], type:"swapM"});
+
+            newarr[j+1] = newarr[j];
+            j = j-1;
+        }
+        moves.push({indices:[j+1+p,i+p], type:"insertM"});
+        newarr[j+1] = key;
+    }
+
+    return moves;
+
+}
+//-------------------------------Merging---------------------------
+
+function playMerge(){
+    const copy=[...array];
+  //  moves = [];
+    mergeSort(copy, 0, array.length-1);
+
+    animate(moves, speed);
+}
+
+function mergeSort(array, p, r){
+    if(p<r)
+    {
+        let q = Math.floor((p+r)/2);
+
+        //console.log("merge: p= ",p," q= ",q," r= ",r);
+
+        moves.push({indices:[p,q], type:"leftblock"});
+        moves.push({indices:[q+1,r], type:"rightblock"});
+
+        mergeSort(array,p,q);
+        mergeSort(array,q+1,r);
+
+        moves.push({indices:[p,q], type:"leftblock"});
+        moves.push({indices:[q+1,r], type:"rightblock"});
+
+        merge(array,p,q,r);
+
+        moves.push({indices:[p,q], type:"leftblock"});
+        moves.push({indices:[q+1,r], type:"rightblock"});
+
+        moves.push({indices:[p,r], type:"over"});
+    }
+}
+
+function merge(array, p, q, r){
+    
+    let newarr = array.slice(p,r+1);
+    const imoves = insertSortforMerge(newarr,p);
+    
+    for(let i=0; i<imoves.length; i++)
+        moves.push(imoves[i]);
+
+    let i=0
+    for(let k=p; k<=r; k++)
+    {    array[k] = newarr[i];  i++;    }
+   /*
+    let n1 = q-p+1;
+    let n2 = r-q;
+
+    let L = []; let R = [];
+    for(let i=0; i<n1; i++)
+        L.push(array[p+i]);
+    L[n1] = 5000;
+    for(let j=0; j<n2; j++)
+        R.push(array[q+j+1]);
+    R[n2] = 5000;
+
+    let i=0; let j=0;
+    for(let k=p; k<=r; k++)
+    {
+        let a = i;  let b = j;
+        if(L[i]<=R[j]){
+           // [a,b]=[b,a];
+            moves.push({indices:[k,p+i], type:"swap"});
+            array[k] = L[i];  //j=i;
+            i++;  a=j;
+           // moves.push({indices:[k,p+i], type:"move"});
+        }
+        else{
+            //[a,b]=[b,a];
+            moves.push({indices:[k,q+j+1], type:"swap"});
+            array[k] = R[j];  //i = j;
+            j++;  b=i;
+           // moves.push({indices:[k,p+i], type:"move"});
+        }
+    }
+        */
+}
+
 //----------------------Animating Moves-----------------------
 
 function animate(moves, speed){
@@ -110,17 +213,25 @@ function showBars(move){
         bar.style.height = array[i]*100 + "%";
         
         bar.classList.add("bar");
-        if(move && move.indices.includes(i))
-        {
+        if(move && move.indices.includes(i)){
+            if(move.type=="leftblock")
+                bar.style.backgroundColor="orange";
+            if(move.type=="rightblock")
+                bar.style.backgroundColor="purple";
+            if(move.type=="over")
+                bar.style.backgroundColor="yellow";
+            if(move.type=="swap")
+                bar.style.backgroundColor="red";
+            if(move.type=="move")
+                bar.style.backgroundColor="red";
             if(move.type=="insert")
                 bar.style.backgroundColor="green";
-            else{
-                bar.style.backgroundColor=
-                    move.type=="swap"?"red":"blue";
-            }
+            if(move.type=="comp")
+                bar.style.backgroundColor="blue";
+            if(move.type=="compM" || move.type=="swapM" || move.type=="insertM")
+                bar.style.backgroundColor="lightgreen";
         }
         container.appendChild(bar);
 
     }
 }
-
